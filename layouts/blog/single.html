@@ -17,10 +17,9 @@
     <h1 class="text-center p-5 text-white roboto-mono blog-title-h1 mb-md-4 position-relative">{{ .Title }}</h1>
   </div>
 </section>
-<section class="container-fluid z-index-1 ">
-  <div class="container position-relative">
-    <div class="row blog__cta--wrapper">
-      <div class="col-9 sf-ui-text br-7 blog-font bg-white  article-blog-wrap blog__cta-sibling">
+<section class="container position-relative z-index-1 ">
+    <div class="row blog-cta--wrapper">
+      <div class="col-9 sf-ui-text br-7 blog-font bg-white  article-blog-wrap blog-cta__sibling">
         <div class="post-author-icon-wrap position-absolute row z-index-1">
           <div class="post-author-icon">
             {{ if isset .Params "author_image" }}
@@ -107,28 +106,40 @@
         </div>
         </div>-->
       </div>
-      <div class="blog__cta col-3 z-index-1 position-absolute d-none d-md-block hight-100">
-        <div class="card blog__cta--card sticky-top">
-          <form class="blog__cta-form card-body sf-ui-text br-7 blog-font bg-white article-blog-wrap ">
-            <div class="blog__cta-title pb-3 blog-title">Free Ebook Download</div>
-            <div class="blog__cta-img">
+      <div class="blog-cta col-3 z-index-1 position-absolute hight-100">
+        <div class="card blog-cta--card sticky-top">
+          <form class="blog-cta__form card-body sf-ui-text br-7 blog-font bg-white article-blog-wrap">
+            <div class="blog-cta__title pb-3 blog-title">Free E-book Download</div>
+            <div class="blog-cta__img">
               <img src="/images/best-practice-book.png">
             </div>
-            <div class="blog__cta-desc">
+            <div class="blog-cta__desc">
               <p>A compilation of best practicies, learned by the Dashburd team from years of experience monitoring 250,000 serverless functions</p>
             </div>
-            <input class="blog__cta-input form-control" type="text" placeholder="Your best email">
-            <button type="button" class="blog__cta-btn btn btn-lg btn-block btn-primary">Download now!</button>
+            <input class="blog-cta__input form-control" type="text" placeholder="Your best email">
+            <button type="button" class="blog-cta__btn btn btn-lg btn-block btn-primary">Download now!</button>
+            <button type="button" class="btn blog-cta__btn-close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </form>
         </div>
       </div>
     </div>
-  </div>
 </section>
 
   {{ partial "newsletter.html" .}}
   {{ partial "mostpopular.html" .}}
   {{ partial "freetrial.html" .}}
+<section class="blog-cta__mobile container-fluid">
+  <div class="blog-cta__mobile--wrapper container">
+    <div class="row">
+      <button type="button" class="blog-cta__btn blog-cta__btn-modal btn btn-lg btn-block">Download free e-book: Serverless Best Practices</button>
+      <button type="button" class="btn blog-cta__mobile-close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+</section>
 {{ end }}
 
 

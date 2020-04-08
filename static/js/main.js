@@ -39,12 +39,10 @@ $sideMenu.classList.add('register')
 window.onpopstate = checkHash
 
 function checkHash () {
-  const hash = window.location.hash;
-  if(document.querySelector('#side-menu')==null)
-  {
-    $sideMenu = document.querySelector('#navigation');
-  }
-  else{
+  const hash = window.location.hash
+  if (document.querySelector('#side-menu') == null) {
+    $sideMenu = document.querySelector('#navigation')
+  } else {
     if (hashTriggers.find(function (str) { return str === hash })) {
       $sideMenu.className = 'show'
       $overlay.classList.add('show')
@@ -60,10 +58,8 @@ function checkHash () {
           break
       }
     } else if (hash === '') {
-      if($sideMenu!=null)
-      $sideMenu.className = '';
-      if($overlay!=null)
-      $overlay.className = ''
+      if ($sideMenu != null) { $sideMenu.className = '' }
+      if ($overlay != null) { $overlay.className = '' }
     }
   }
 }
@@ -201,11 +197,7 @@ $(document).ready(function () {
     $('#carousel-example-multi').carousel({ interval: 4000 })
   }
 
- 
-
-
-
-  if( $('#price-slider').length > 0 ){
+  if ($('#price-slider').length > 0) {
     var slider = new Slider('#price-slider', {
       ticks: [1, 2, 3, 4],
       ticks_snap_bounds: 4,
@@ -267,21 +259,55 @@ $(document).ready(function () {
     }
   })
 
-  var $videoSrc;
-  $('.video-btn').click(function() {
-    $videoSrc = $(this).data("src")
+  var $videoSrc
+  $('.video-btn').click(function () {
+    $videoSrc = $(this).data('src')
   })
 
   $('#demoModal').on('shown.bs.modal', function (e) {
-    $("#video").attr('src', $videoSrc + "?rel=0&showinfo=0&modestbranding=1&amp;autoplay=1")
+    $('#video').attr('src', $videoSrc + '?rel=0&showinfo=0&modestbranding=1&amp;autoplay=1')
   })
 
   $('#demoModal').on('hide.bs.modal', function (e) {
-    $("#video").attr('src', $videoSrc)
+    $('#video').attr('src', $videoSrc)
   })
+
+  // blog-detailed CTA form
+  if ($(window).width() < 1023) {
+    $('body .blog-cta').insertBefore('.blog-cta__mobile')
+
+    $('body .blog-cta__mobile').on('click', '.blog-cta__mobile-close', function (e) {
+      $(this).parents('.blog-cta__mobile').addClass('inactive')
+    })
+
+    $('body .blog-cta__mobile').on('click', '.blog-cta__btn-modal', function (e) {
+      $('body').find('.blog-cta').toggleClass('modal')
+      $('body').toggleClass('overflow-hidden')
+    })
+
+    $(document).click(function (event) {
+      if (!$(event.target).closest('.blog-cta__form, .blog-cta__btn-modal').length) {
+        if ($('body').find('.blog-cta').hasClass('modal')) {
+          $('body').find('.blog-cta').toggleClass('modal')
+          $('body').toggleClass('overflow-hidden')
+        }
+      }
+    })
+  }
+
+  $('body .blog-cta').on('click', '.blog-cta__btn-close', function (e) {
+    if ($(window).width() > 1023) {
+      $(this).parents('.blog-cta').addClass('inactive')
+    } else {
+      $('body').find('.blog-cta').toggleClass('modal')
+      $('body').toggleClass('overflow-hidden')
+    }
+  })
+
+
 })
 
-//hello
+// hello
 let tl = new TimelineMax()
 tl.set('.hero-info', {autoAlpha: 1})
   .staggerFromTo('.hero-info div > *', 1, {
